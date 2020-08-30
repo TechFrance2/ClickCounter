@@ -1,32 +1,30 @@
 import React from 'react'
 
 class App extends React.Component {
-  constructor() {
+  constructor(){
     super()
-    this.state = {
-        count: 0
+    this.state ={
+      isLoggedIn: true
     }
-  this.handleClick= this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
-  handleClick() {
+  handleClick(){
     this.setState(prevState => {
       return {
-        count: prevState.count + 1
+        isLoggedIn: !prevState.isLoggedIn
       }
     })
   }
-  render() {
-    return (
-      <div className= 'counter'> 
-        <h1>{this.state.count}</h1>
-
-         <button onClick= {this.handleClick} >Change!</button>
-
+  
+  render () {
+    let buttonText = this.state.isLoggedIn ? "LOG IN" : "LOG OUT";
+    let displayText = this.state.isLoggedIn ? "You are logged out" : "You are logged in"
+    return(
+      <div>
+        <h1> {displayText} </h1> 
+        <button onClick ={this.handleClick}>{buttonText}</button>
       </div>
-
-
-      )   
-    }
-  }
+    )
+  } 
+}
 export default App
-
